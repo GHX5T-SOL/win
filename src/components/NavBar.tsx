@@ -21,6 +21,14 @@ function TelegramIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
+function BurgerIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z" />
+    </svg>
+  );
+}
+
 export function NavBar() {
   const [open, setOpen] = useState(false);
   return (
@@ -30,18 +38,22 @@ export function NavBar() {
           <Image src="/assets/nike-logo.svg" alt="WIN" width={28} height={28} />
           <Link href="/" className="font-semibold">Just Dog It ($WIN)</Link>
         </div>
-        <div className="hidden md:flex items-center gap-4">
-          <Link href="/play" className="hover:underline">Play</Link>
-          <Link href="#leaderboard" className="hover:underline">Leaderboard</Link>
-          <Link href="https://t.me/dogwincoin" target="_blank" aria-label="Telegram" className="opacity-80 hover:opacity-100">
-            <TelegramIcon className="w-5 h-5" />
-          </Link>
-          <Link href="https://x.com/dogwincoin" target="_blank" aria-label="X" className="opacity-80 hover:opacity-100">
-            <XIcon className="w-5 h-5" />
-          </Link>
+        <div className="flex items-center gap-3">
+          <div className="hidden md:flex items-center gap-4">
+            <Link href="/play" className="hover:underline">Play</Link>
+            <Link href="#leaderboard" className="hover:underline">Leaderboard</Link>
+            <Link href="https://t.me/dogwincoin" target="_blank" aria-label="Telegram" className="opacity-80 hover:opacity-100">
+              <TelegramIcon className="w-5 h-5" />
+            </Link>
+            <Link href="https://x.com/dogwincoin" target="_blank" aria-label="X" className="opacity-80 hover:opacity-100">
+              <XIcon className="w-5 h-5" />
+            </Link>
+          </div>
           <WalletButton />
+          <button className="md:hidden rounded border px-2 py-2" aria-label="Menu" onClick={() => setOpen(v => !v)}>
+            <BurgerIcon className="w-5 h-5" />
+          </button>
         </div>
-        <button className="md:hidden rounded border px-3 py-1" onClick={() => setOpen(v => !v)}>Menu</button>
       </div>
       {open && (
         <div className="md:hidden px-4 pb-3 flex flex-col gap-3 border-t bg-white/60 dark:bg-black/40">
@@ -55,7 +67,6 @@ export function NavBar() {
               <XIcon className="w-5 h-5" />
             </Link>
           </div>
-          <WalletButton />
         </div>
       )}
     </nav>

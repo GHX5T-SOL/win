@@ -9,7 +9,12 @@ export default function Home() {
 
       <main className="px-6 py-10 grid lg:grid-cols-2 gap-6 md:gap-8 items-center">
         <div className="space-y-6">
-          <h1 className="text-4xl md:text-6xl font-bold max-w-xl">Just Dog It.</h1>
+          <h1 className="text-4xl md:text-6xl font-bold max-w-xl">
+            <span className="inline-flex items-center gap-3">
+              <span>Just Dog It.</span>
+              <Image src="/assets/nike-logo.svg" alt="Nike" width={44} height={44} className="h-8 w-8 md:h-11 md:w-11" />
+            </span>
+          </h1>
           <p className="text-base md:text-lg max-w-xl opacity-80">
             $WIN — the memecoin that goes hard in the paint. Join the pack and Just Dog It.
           </p>
