@@ -17,6 +17,8 @@ export function PopAShot({ durationSeconds = 30, onScoreChange, onEnd }: PopASho
   const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(durationSeconds);
   const [isRunning, setIsRunning] = useState(false);
+  const [showAim, setShowAim] = useState(false);
+  const aimFrom = useRef<Vec2 | null>(null);
 
   // Physics state
   const ballPos = useRef<Vec2>({ x: 0, y: 0 });
@@ -160,6 +162,17 @@ export function PopAShot({ durationSeconds = 30, onScoreChange, onEnd }: PopASho
         ctx.restore();
       }
 
+      // Aim guide
+      if (showAim && aimFrom.current) {
+        ctx.strokeStyle = "rgba(255,255,255,0.8)";
+        ctx.setLineDash([6, 6]);
+        ctx.beginPath();
+        ctx.moveTo(ballPos.current.x, ballPos.current.y);
+        ctx.lineTo(aimFrom.current.x, aimFrom.current.y);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+
       // HUD
       ctx.fillStyle = "rgba(0,0,0,0.45)";
       ctx.fillRect(12, 12, 120, 50);
@@ -197,6 +210,8 @@ export function PopAShot({ durationSeconds = 30, onScoreChange, onEnd }: PopASho
       const rect = (e.target as HTMLCanvasElement).getBoundingClientRect();
       isDragging.current = true;
       dragStart.current = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+      aimFrom.current = dragStart.current;
+      setShowAim(true);
     },
     onMouseUp: (e: React.MouseEvent<HTMLCanvasElement>) => {
       if (!isRunning || !isDragging.current || !dragStart.current) return;
@@ -205,15 +220,17 @@ export function PopAShot({ durationSeconds = 30, onScoreChange, onEnd }: PopASho
       const dx = (dragStart.current.x - end.x) * 0.22;
       const dy = (dragStart.current.y - end.y) * 0.22;
       ballVel.current = { x: dx, y: dy };
-      isDragging.current = false; dragStart.current = null;
+      isDragging.current = false; dragStart.current = null; aimFrom.current = null; setShowAim(false);
     },
-    onMouseLeave: () => { isDragging.current = false; dragStart.current = null; },
+    onMouseLeave: () => { isDragging.current = false; dragStart.current = null; aimFrom.current = null; setShowAim(false); },
     onTouchStart: (e: React.TouchEvent<HTMLCanvasElement>) => {
       if (!isRunning) return;
       const rect = (e.target as HTMLCanvasElement).getBoundingClientRect();
       const t = e.touches[0];
       isDragging.current = true;
       dragStart.current = { x: t.clientX - rect.left, y: t.clientY - rect.top };
+      aimFrom.current = dragStart.current;
+      setShowAim(true);
     },
     onTouchEnd: (e: React.TouchEvent<HTMLCanvasElement>) => {
       if (!isRunning || !isDragging.current || !dragStart.current) return;
@@ -223,7 +240,7 @@ export function PopAShot({ durationSeconds = 30, onScoreChange, onEnd }: PopASho
       const dx = (dragStart.current.x - end.x) * 0.22;
       const dy = (dragStart.current.y - end.y) * 0.22;
       ballVel.current = { x: dx, y: dy };
-      isDragging.current = false; dragStart.current = null;
+      isDragging.current = false; dragStart.current = null; aimFrom.current = null; setShowAim(false);
     },
   } as const;
 
@@ -233,6 +250,9 @@ export function PopAShot({ durationSeconds = 30, onScoreChange, onEnd }: PopASho
         <div className="font-semibold">🏀 Pop‑A‑Shot</div>
         <div className="text-sm opacity-80">Score: {score} · Time: {timeLeft}s</div>
       </div>
+      {!isRunning && (
+        <button className="mb-3 rounded-full border px-4 py-2" onClick={() => setIsRunning(true)}>Start</button>
+      )}
       <div className="rounded-xl overflow-hidden border bg-black">
         <div className="relative w-full" style={{ aspectRatio: `${logical.width}/${logical.height}` }}>
           <canvas ref={canvasRef} className="absolute inset-0 w-full h-full touch-none" {...canvasHandlers} />

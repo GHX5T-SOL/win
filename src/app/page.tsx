@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className="min-h-screen w-full bg-[url('/assets/just-dog-it-slogan-with-nike-logo.svg')] bg-no-repeat bg-[length:600px_auto] bg-right-top court-bg">
 
-      <main className="px-6 py-10 grid md:grid-cols-2 gap-8 items-center">
+      <main className="px-6 py-10 grid lg:grid-cols-2 gap-6 md:gap-8 items-center">
         <div className="space-y-6">
           <h1 className="text-4xl md:text-6xl font-bold max-w-xl">Just Dog It.</h1>
           <p className="text-base md:text-lg max-w-xl opacity-80">
@@ -36,8 +36,8 @@ export default function Home() {
           </div>
           <div className="mt-3 text-sm opacity-80">Daily prizes: Top 3 on the leaderboard win $WIN.</div>
         </div>
-        <div className="flex justify-center md:justify-end">
-          <Image src="/assets/dog-picture.svg" alt="$WIN Dog" width={460} height={460} className="drop-shadow-xl" />
+        <div className="flex justify-center lg:justify-end -ml-6 md:-ml-12 lg:-ml-16">
+          <Image src="/assets/dog-picture.svg" alt="$WIN Dog" width={480} height={480} className="drop-shadow-xl" />
         </div>
       </main>
 
