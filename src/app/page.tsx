@@ -36,8 +36,8 @@ export default function Home() {
           </div>
           <div className="mt-3 text-sm opacity-80">Daily prizes: Top 3 on the leaderboard win $WIN.</div>
         </div>
-        <div className="flex justify-center lg:justify-end -ml-6 md:-ml-12 lg:-ml-16">
-          <Image src="/assets/dog-picture.svg" alt="$WIN Dog" width={480} height={480} className="drop-shadow-xl" />
+        <div className="flex justify-center lg:justify-end -ml-8 md:-ml-16 lg:-ml-24 xl:-ml-28">
+          <Image src="/assets/dog-picture.svg" alt="$WIN Dog" width={500} height={500} className="drop-shadow-xl" />
         </div>
       </main>
 
