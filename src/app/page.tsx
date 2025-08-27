@@ -9,7 +9,7 @@ export default function Home() {
 
       <main className="px-6 py-10 grid md:grid-cols-2 gap-8 items-center">
         <div className="space-y-6">
-          <h1 className="text-4xl md:text-6xl font-bold max-w-xl">Gritty. Drill. Solana. Shoot your shot.</h1>
+          <h1 className="text-4xl md:text-6xl font-bold max-w-xl">Just Dog It.</h1>
           <p className="text-base md:text-lg max-w-xl opacity-80">
             $WIN — the memecoin that goes hard in the paint. Join the pack and Just Dog It.
           </p>
@@ -43,7 +43,7 @@ export default function Home() {
 
       <section className="px-6 pb-16">
         <div className="rounded-2xl border p-6 md:p-8 bg-white/40 dark:bg-black/20 backdrop-blur">
-          <h2 className="text-2xl font-semibold mb-2">Arcade: Street Shot</h2>
+          <h2 className="text-2xl font-semibold mb-2">🏀 Arcade: Street Shot</h2>
           <p className="mb-4 opacity-80">Simple basketball toss mini-game (mobile + desktop). Play for fun, wallet optional.</p>
           <div className="flex gap-3">
             <Link className="rounded-full border px-5 py-3 hover:bg-black hover:text-white transition" href="/play">Play now</Link>

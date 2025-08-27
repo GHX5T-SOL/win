@@ -22,7 +22,7 @@ export function Leaderboard() {
 
   return (
     <div id="leaderboard" className="rounded-2xl border p-6 bg-white/40 dark:bg-black/20 backdrop-blur">
-      <h3 className="text-xl font-semibold mb-4">Leaderboard (demo)</h3>
+      <h3 className="text-xl font-semibold mb-4">👑 Leaderboard (demo)</h3>
       {loading ? (
         <div className="opacity-70">Loading...</div>
       ) : (
