@@ -29,8 +29,8 @@ export default function Home() {
             <Link className="rounded-full border px-5 py-3 text-center hover:bg-black hover:text-white transition" href="https://pump.fun/coin/Dzk3GuG9D19RFtWpUjqKuUjhySKhQW4kck5fmNPCpump" target="_blank">
               Pump.Fun
             </Link>
-            <Link className="rounded-full border px-5 py-3 text-center hover:bg-black hover:text-white transition" href="#" target="_blank">
-              DexScreener: TBD
+            <Link className="rounded-full border px-5 py-3 text-center hover:bg-black hover:text-white transition" href="https://dexscreener.com/solana/4q3qqv8y34eug8w7whqm4acyytxewmtorgnt9p6jvdzs" target="_blank">
+              DexScreener
             </Link>
             <Link className="rounded-full border px-5 py-3 text-center hover:bg-black hover:text-white transition" href="https://t.me/dogwincoin" target="_blank">
               Telegram
