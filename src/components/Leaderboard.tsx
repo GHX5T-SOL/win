@@ -29,7 +29,9 @@ export function Leaderboard() {
         <ul className="space-y-2">
           {scores.map((s, idx) => (
             <li key={idx} className="flex justify-between">
-              <span className="font-mono opacity-80">{s.address}</span>
+              <span className="font-mono opacity-80">
+                {s.address.slice(0, 4) + "..." + s.address.slice(-4)}
+              </span>
               <span className="font-semibold">{s.score}</span>
             </li>
           ))}

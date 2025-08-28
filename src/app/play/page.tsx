@@ -2,44 +2,30 @@
 
 import React, { useEffect, useRef } from "react";
 import { useWallet } from "@solana/wallet-adapter-react";
-import { StreetBasketballGame } from "@/components/game3d/StreetBasketballGame";
+import { BasketballGame } from "@/components/BasketballGame";
 
 export default function PlayPage() {
   const { publicKey } = useWallet();
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const trajRef = useRef<HTMLCanvasElement | null>(null);
   const scoreRef = useRef<HTMLSpanElement | null>(null);
   const timerRef = useRef<HTMLSpanElement | null>(null);
   const finalScoreRef = useRef<HTMLSpanElement | null>(null);
   const gameOverRef = useRef<HTMLDivElement | null>(null);
   const restartBtnRef = useRef<HTMLButtonElement | null>(null);
-  const gameRef = useRef<StreetBasketballGame | null>(null);
 
   useEffect(() => {
     if (
       containerRef.current &&
-      trajRef.current &&
       scoreRef.current &&
       timerRef.current &&
       finalScoreRef.current &&
       gameOverRef.current &&
       restartBtnRef.current
     ) {
-      gameRef.current = new StreetBasketballGame({
-        container: containerRef.current,
-        trajectoryCanvas: trajRef.current,
-        uiRefs: {
-          scoreEl: scoreRef.current,
-          timerEl: timerRef.current,
-          finalScoreEl: finalScoreRef.current,
-          gameOverEl: gameOverRef.current,
-          restartBtn: restartBtnRef.current,
-        },
-      });
+      // Initialize the game here if needed, but since component handles it, remove old init
     }
     return () => {
-      gameRef.current?.destroy();
-      gameRef.current = null;
+      // Destroy handled by component
     };
   }, []);
 
@@ -69,9 +55,17 @@ export default function PlayPage() {
           <div className="text-sm opacity-80">Score: <span ref={scoreRef}>0</span></div>
         </div>
         <div className="mb-3 text-xs md:text-sm opacity-80">Game is still under development, watch this page for live updates.</div>
-        <div className="relative w-full rounded-xl overflow-hidden border bg-black h-[520px]">
-          <div ref={containerRef} className="absolute inset-0" />
-          <canvas ref={trajRef} className="absolute inset-0 pointer-events-none" />
+        <div className="relative w-full rounded-xl overflow-hidden border bg-black h-[600px]">
+          <BasketballGame
+            uiRefs={{
+              scoreEl: scoreRef.current!,
+              timerEl: timerRef.current!,
+              finalScoreEl: finalScoreRef.current!,
+              gameOverEl: gameOverRef.current!,
+              restartBtn: restartBtnRef.current!,
+            }}
+          />
+          {/* Remove trajectory canvas */}
           <div className="absolute top-3 left-3 text-sm bg-black/50 px-2 py-1 rounded">
             Time: <span ref={timerRef}>2:00</span>
           </div>

@@ -17,9 +17,12 @@
     "@solana/wallet-adapter-solflare": "^0.6.32",
     "@solana/wallet-adapter-wallets": "^0.19.37",
     "@solana/web3.js": "^1.98.4",
+    "@vercel/kv": "^1.0.1",
     "@vercel/postgres": "^0.10.0",
     "cannon-es": "^0.20.0",
+    "ioredis": "^5.7.0",
     "next": "15.5.2",
+    "phaser": "^3.90.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "three": "^0.179.1"
