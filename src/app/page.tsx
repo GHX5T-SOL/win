@@ -21,13 +21,13 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-xl">
             <button
               className="rounded-full border px-5 py-3 text-center hover:bg-black hover:text-white transition"
-              onClick={() => navigator.clipboard.writeText("TBD-CONTRACT-ADDRESS").catch(() => {})}
+              onClick={() => navigator.clipboard.writeText("Dzk3GuG9D19RFtWpUjqKuUjhySKhQW4kck5fmNPCpump").catch(() => {})}
               title="Copy contract address"
             >
               Contract: Copy
             </button>
-            <Link className="rounded-full border px-5 py-3 text-center hover:bg-black hover:text-white transition" href="#" target="_blank">
-              Pump.Fun: TBD
+            <Link className="rounded-full border px-5 py-3 text-center hover:bg-black hover:text-white transition" href="https://pump.fun/coin/Dzk3GuG9D19RFtWpUjqKuUjhySKhQW4kck5fmNPCpump" target="_blank">
+              Pump.Fun
             </Link>
             <Link className="rounded-full border px-5 py-3 text-center hover:bg-black hover:text-white transition" href="#" target="_blank">
               DexScreener: TBD
