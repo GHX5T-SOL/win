@@ -2,7 +2,11 @@
 
 import React, { useEffect, useRef } from "react";
 import { useWallet } from "@solana/wallet-adapter-react";
-import { BasketballGame } from "@/components/BasketballGame";
+import dynamic from "next/dynamic";
+
+const BasketballGame = dynamic(() => import("@/components/BasketballGame").then(m => m.BasketballGame), {
+  ssr: false,
+});
 
 export default function PlayPage() {
   const { publicKey } = useWallet();
@@ -22,10 +26,10 @@ export default function PlayPage() {
       gameOverRef.current &&
       restartBtnRef.current
     ) {
-      // Initialize the game here if needed, but since component handles it, remove old init
+      // Component handles game lifecycle
     }
     return () => {
-      // Destroy handled by component
+      // Component cleanup
     };
   }, []);
 
@@ -65,7 +69,6 @@ export default function PlayPage() {
               restartBtn: restartBtnRef.current!,
             }}
           />
-          {/* Remove trajectory canvas */}
           <div className="absolute top-3 left-3 text-sm bg-black/50 px-2 py-1 rounded">
             Time: <span ref={timerRef}>2:00</span>
           </div>

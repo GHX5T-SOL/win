@@ -1,9 +1,13 @@
 import Redis from "ioredis";
 
-const redis = new Redis(process.env.REDIS_URL!, {
-  tls: {
-    rejectUnauthorized: false,
-  },
-});
-
-export default redis;
+export function createRedis() {
+  const url = process.env.REDIS_URL;
+  if (!url) return null;
+  const client = new Redis(url, {
+    tls: {
+      rejectUnauthorized: false,
+    },
+    lazyConnect: true,
+  });
+  return client;
+}

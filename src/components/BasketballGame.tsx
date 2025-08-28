@@ -1,6 +1,6 @@
 "use client";
 
-import Phaser from "phaser";
+import * as Phaser from "phaser";
 import { useEffect, useRef } from "react";
 
 interface UIRefs {
@@ -45,13 +45,15 @@ class GameScene extends Phaser.Scene {
     // Invisible rim zone for bounce collision (positioned where rim would be in image)
     this.rimZone = this.add.zone(width / 2 - 25, height * 0.3, 50, 10); // Adjust coords based on image
     this.physics.add.existing(this.rimZone);
-    (this.rimZone.body as Phaser.Physics.Arcade.Body).setAllowGravity(false);
-    this.rimZone.body.setImmovable(true);
+    const rimBody = this.rimZone.body as Phaser.Physics.Arcade.Body;
+    rimBody.setAllowGravity(false);
+    rimBody.setImmovable(true);
 
     // Invisible net zone for scoring (below rim)
     this.netZone = this.add.zone(width / 2 - 25, height * 0.3 + 20, 50, 30);
     this.physics.add.existing(this.netZone);
-    (this.netZone.body as Phaser.Physics.Arcade.Body).setAllowGravity(false);
+    const netBody = this.netZone.body as Phaser.Physics.Arcade.Body;
+    netBody.setAllowGravity(false);
 
     this.createBall();
 
@@ -88,7 +90,7 @@ class GameScene extends Phaser.Scene {
     }
   }
 
-  handlePointerMove(pointer: Phaser.Input.Pointer) {
+  handlePointerMove(_pointer: Phaser.Input.Pointer) {
     if (this.dragStart) {
       // Could add aim line here if desired
     }
@@ -174,12 +176,14 @@ class GameScene extends Phaser.Scene {
     const { width, height } = this.scale;
     this.rimZone = this.add.zone(width / 2 - 25, height * 0.3, 50, 10);
     this.physics.add.existing(this.rimZone);
-    (this.rimZone.body as Phaser.Physics.Arcade.Body).setAllowGravity(false);
-    this.rimZone.body.setImmovable(true);
+    const rimBody = this.rimZone.body as Phaser.Physics.Arcade.Body;
+    rimBody.setAllowGravity(false);
+    rimBody.setImmovable(true);
 
     this.netZone = this.add.zone(width / 2 - 25, height * 0.3 + 20, 50, 30);
     this.physics.add.existing(this.netZone);
-    (this.netZone.body as Phaser.Physics.Arcade.Body).setAllowGravity(false);
+    const netBody = this.netZone.body as Phaser.Physics.Arcade.Body;
+    netBody.setAllowGravity(false);
   }
 
   updateUI() {
@@ -210,7 +214,7 @@ export function BasketballGame({ uiRefs }: { uiRefs: UIRefs }) {
       physics: {
         default: "arcade",
         arcade: {
-          gravity: { y: 500 },
+          gravity: { x: 0, y: 500 },
           debug: false,
         },
       },
